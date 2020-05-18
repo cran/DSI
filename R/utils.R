@@ -5,6 +5,13 @@
   .asNamedListOfValues(conns, value, "table")
 }
 
+#' Makes a typical logindata data frame a list of resources named by the server in which they are defined.
+#' Makes a character vector of resource names a list named by the connections.
+#' @keywords internal
+.asNamedListOfResources <- function(conns, value) {
+  .asNamedListOfValues(conns, value, "resource")
+}
+
 #' Makes a typical logindata data frame a list of items named by the server in which they are defined.
 #' Makes a character vector of item names a list named by the connections.
 #' @keywords internal
@@ -60,8 +67,56 @@
 #' Clear some cache
 #' @keywords internal
 .clearCache <- function(env=getOption("datashield.env", globalenv())) {
-  env <- getOption("datashield.env", globalenv())
   if (exists(".datashield.pkg_status", envir = env)) {
     rm(".datashield.pkg_status", envir = env)
+  }
+}
+
+#' Clear last errors
+#' @keywords internal
+.clearLastErrors <- function(env=getOption("datashield.env", globalenv())) {
+  if (exists(".datashield.last_errors", envir = env)) {
+    rm(".datashield.last_errors", envir = env)
+  }
+}
+
+#' Check if there are last errors
+#' @keywords internal
+.hasLastErrors <- function(name, env=getOption("datashield.env", globalenv())) {
+  if (exists(".datashield.last_errors", envir = env)) {
+    errs <- get(".datashield.last_errors", envir = env)
+    !is.null(errs[[name]])
+  } else {
+    FALSE
+  }
+}
+
+#' Check if there are last errors
+#' @keywords internal
+.checkLastErrors <- function(env=getOption("datashield.env", globalenv())) {
+  if (exists(".datashield.last_errors", envir = env)) {
+    if (getOption("datashield.errors.stop", TRUE)) {
+      stop("There are some DataSHIELD errors, list them with datashield.errors()", call. = FALSE)
+    } else {
+      warning("There are some DataSHIELD errors, list them with datashield.errors()", call. = FALSE)
+    }
+  }
+}
+
+#' Append error message to last errors vector
+#' @keywords internal
+.appendError <- function(name, msg, env=getOption("datashield.env", globalenv())) {
+  if (exists(".datashield.last_errors", envir = env)) {
+    errs <- get(".datashield.last_errors", envir = env)
+    if (is.null(errs[[name]])) {
+      errs[[name]] <- msg
+    } else {
+      errs[[name]] <- append(errs[[name]], msg)
+    }
+    assign(".datashield.last_errors", value = errs, envir = env)
+  } else {
+    errs <- list()
+    errs[[name]] <- msg
+    assign(".datashield.last_errors", value = errs, envir = env)
   }
 }

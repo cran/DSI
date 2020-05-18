@@ -1,7 +1,7 @@
 Package: DSI
 Type: Package
 Title: 'DataSHIELD' Interface
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     c(person(given = "Yannick",
              family = "Marcon",
@@ -24,20 +24,20 @@ Suggests: testthat (>= 2.1.0)
 License: LGPL (>= 2.1)
 URL: http://datashield.ac.uk
 BugReports: https://github.com/datashield/DSI
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Encoding: UTF-8
 LazyData: true
 Collate: 'DSObject.R' 'hidden.R' 'DSConnection.R' 'DSDriver.R'
         'DSLoginBuilder.R' 'DSResult.R' 'datashield.aggregate.R'
         'datashield.assign.R' 'datashield.connections.R'
-        'datashield.login.R' 'datashield.logout.R'
-        'datashield.status.R' 'datashield.symbol.R'
-        'datashield.workspace.R' 'rd.R' 'utils.R'
+        'datashield.errors.R' 'datashield.list.R' 'datashield.login.R'
+        'datashield.logout.R' 'datashield.status.R'
+        'datashield.symbol.R' 'datashield.workspace.R' 'rd.R' 'utils.R'
 NeedsCompilation: no
-Packaged: 2020-04-02 07:06:49 UTC; yannick
+Packaged: 2020-05-18 11:21:05 UTC; yannick
 Author: Yannick Marcon [aut, cre] (<https://orcid.org/0000-0003-0138-2023>),
   Amadou Gaye [ctb] (<https://orcid.org/0000-0002-1180-2792>),
   Paul Burton [ctb]
 Maintainer: Yannick Marcon <yannick.marcon@obiba.org>
 Repository: CRAN
-Date/Publication: 2020-04-03 14:20:05 UTC
+Date/Publication: 2020-05-18 11:40:02 UTC

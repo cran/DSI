@@ -22,7 +22,8 @@ to login to the servers where the data to analyse is stored. The expected column
 'server' (the server name), url' (the server url), 'user' (the user name or the certificate PEM file path),
 'password' (the user password or the private key PEM file path),
 'token' (the personal access token, ignored if 'user' is defined), 'table' (the fully qualified name of
-the table in the data repository), 'options' (the SSL options). An additional column 'identifiers'
+the table in the data repository), 'resource' (the fully qualified name of
+the resource reference in the data repository), 'options' (the SSL options). An additional column 'identifiers'
 can be specified for identifiers mapping (if supported by data repository). See also the documentation
 of the examplar input table \code{logindata} for details of the login elements.}
 
@@ -64,15 +65,15 @@ combined with a user name, depending on the data repository system).
 # build your data.frame
 builder <- newDSLoginBuilder()
 builder$append(server="server1", url="https://opal-demo.obiba.org",
-               table="datashield.CNSIM1",
-               user="administrator", password="password",
+               table="datashield.CNSIM1", resource="datashield.CNSIM1r",
+               user="dsuser", password="password",
                options="list(ssl_verifyhost=0,ssl_verifypeer=0)")
 builder$append(server="server2", url="dslite.server",
-               table="CNSIM2", driver="DSLiteDriver")
+               table="CNSIM2", resource="CNSIM2r", driver="DSLiteDriver")
 builder$append(server="server3", url="https://molgenis.example.org",
-               table="CNSIM3", token="123456789", driver="MolgenisDriver")
+               table="CNSIM3", resource="CNSIM3r", token="123456789", driver="MolgenisDriver")
 builder$append(server="server4", url="dslite.server",
-               table="CNSIM4", driver="DSLiteDriver")
+               table="CNSIM4", resource="CNSIM4r", driver="DSLiteDriver")
 logindata <- builder$build()
 
 # or load the data.frame that contains the login details
@@ -87,6 +88,21 @@ connections <- datashield.login(logins=logindata, assign=TRUE)
 # Example 3: login and assign specific variable(s)
 myvar <- list("LAB_TSC")
 connections <- datashield.login(logins=logindata, assign=TRUE, variables=myvar)
+
+# note that the asignment information can also be provided afterwards
+builder <- newDSLoginBuilder()
+builder$append(server="server1", url="https://opal-demo.obiba.org",
+               user="dsuser", password="password")
+builder$append(server="server2", url="https://opal-test.obiba.org",
+               token="123456789")
+logindata <- builder$build()
+connections <- datashield.login(logins=logindata)
+datashield.assign.table(connections, symbol = "D",
+                        table = list(server1 = "CNSIM.CNSIM1",
+                                     server2 = "CNSIM.CNSIM2"))
+datashield.assign.resource(connections, symbol = "rsrc",
+                           table = list(server1 = "res.CNSIM1",
+                                        server2 = "res.CNSIM2"))
 }
 
 }

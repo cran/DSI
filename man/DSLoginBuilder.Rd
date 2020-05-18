@@ -4,7 +4,9 @@
 \name{DSLoginBuilder}
 \alias{DSLoginBuilder}
 \title{DataSHIELD login details builder}
-\format{A R6 object of class DSLoginBuilder}
+\format{
+A R6 object of class DSLoginBuilder
+}
 \description{
 DataSHIELD login details builder
 
@@ -25,6 +27,7 @@ See also \link{newDSLoginBuilder}.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new DSLoginBuilder instance.
 \subsection{Usage}{
@@ -46,6 +49,7 @@ A DSLoginBuilder object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-append"></a>}}
+\if{latex}{\out{\hypertarget{method-append}{}}}
 \subsection{Method \code{append()}}{
 Append login information for a specific server.
 \subsection{Usage}{
@@ -53,6 +57,7 @@ Append login information for a specific server.
   server,
   url,
   table = "",
+  resource = "",
   driver = "OpalDriver",
   user = "",
   password = "",
@@ -70,6 +75,8 @@ Append login information for a specific server.
 
 \item{\code{table}}{The table path that identifies the dataset in the server.}
 
+\item{\code{resource}}{The resource path that identifies the resource reference in the server.}
+
 \item{\code{driver}}{The \code{\link{DSDriver-class}} name to build the \code{\link{DSConnection-class}}.}
 
 \item{\code{user}}{The user name in the user credentials.}
@@ -85,6 +92,7 @@ Append login information for a specific server.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-build"></a>}}
+\if{latex}{\out{\hypertarget{method-build}{}}}
 \subsection{Method \code{build()}}{
 Build the DSLoginBuilder instance.
 \subsection{Usage}{
@@ -97,6 +105,7 @@ The DataSHIELD logindata data.frame
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
