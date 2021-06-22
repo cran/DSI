@@ -17,8 +17,8 @@ accessible through this connection.
 }
 \examples{
 \dontrun{
-con <- dbConnect(DSOpal::Opal(), "server1",
-  "username", "password", "https://opal.example.org")
+con <- dsConnect(DSOpal::Opal(), "server1",
+  username = "dsuser", password = "password", url = "https://opal-demo.obiba.org")
 dsListResources(con)
 dsDisconnect(con)
 }
@@ -38,6 +38,7 @@ Other DSConnection generics:
 \code{\link{dsKeepAlive}()},
 \code{\link{dsListMethods}()},
 \code{\link{dsListPackages}()},
+\code{\link{dsListProfiles}()},
 \code{\link{dsListSymbols}()},
 \code{\link{dsListTables}()},
 \code{\link{dsListWorkspaces}()},

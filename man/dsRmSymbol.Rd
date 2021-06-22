@@ -18,8 +18,8 @@ After removal, the data identified by the symbol will not be accessible in the D
 }
 \examples{
 \dontrun{
-con <- dbConnect(DSOpal::Opal(), "server1",
-  "username", "password", "https://opal.example.org")
+con <- dsConnect(DSOpal::Opal(), "server1",
+  username = "dsuser", password = "password", url = "https://opal-demo.obiba.org")
 dsAssignTable(con, "D", "test.CNSIM")
 dsRmSymbol(con, "D")
 dsDisconnect(con)
@@ -40,6 +40,7 @@ Other DSConnection generics:
 \code{\link{dsKeepAlive}()},
 \code{\link{dsListMethods}()},
 \code{\link{dsListPackages}()},
+\code{\link{dsListProfiles}()},
 \code{\link{dsListResources}()},
 \code{\link{dsListSymbols}()},
 \code{\link{dsListTables}()},

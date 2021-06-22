@@ -19,8 +19,8 @@ such workspace exists.
 }
 \examples{
 \dontrun{
-con <- dbConnect(DSOpal::Opal(), "server1",
-  "username", "password", "https://opal.example.org")
+con <- dsConnect(DSOpal::Opal(), "server1",
+  username = "dsuser", password = "password", url = "https://opal-demo.obiba.org")
 dsSaveWorkspace(con, "foo")
 dsListWorkspaces(con)
 dsRmWorkspace(con, "foo")
@@ -43,6 +43,7 @@ Other DSConnection generics:
 \code{\link{dsKeepAlive}()},
 \code{\link{dsListMethods}()},
 \code{\link{dsListPackages}()},
+\code{\link{dsListProfiles}()},
 \code{\link{dsListResources}()},
 \code{\link{dsListSymbols}()},
 \code{\link{dsListTables}()},

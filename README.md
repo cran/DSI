@@ -1,13 +1,13 @@
 # DataSHIELD Interface
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/DSI)](https://cran.r-project.org/package=DSI)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/DSI)](https://cran.r-project.org/package=DSI)
 
 The DataSHIELD Interface (DSI) defines a set of [S4 classes and generic methods](http://adv-r.had.co.nz/S4.html) 
 that can be implemented for accessing a data repository supporting the DataSHIELD infrastructure: controlled 
 R commands to be executed on the server side are garanteeing that non disclosive information is returned 
 to client side.
 
-Learn more about [DataSHIELD](http://www.datashield.ac.uk/).
+Learn more about [DataSHIELD](https://www.datashield.org/).
 
 ## Class Structure
 
@@ -21,8 +21,7 @@ configuration comparision),
 * `DSResult` wraps access to the result, which can be fetched either synchronously or asynchronously 
 depending on the capabilities of the data repository server.
 
-All classes are *virtual*: they cannot be instantiated directly and instead must be subclassed. See [DSOpal](https://github.com/datashield/DSOpal) for a reference implementation of DSI based on the 
-[Opal](https://www.obiba.org/pages/products/opal/) data repository.
+All classes are *virtual*: they cannot be instantiated directly and instead must be subclassed. See [DSOpal](https://datashield.github.io/DSOpal/) for a reference implementation of DSI based on the [Opal](https://www.obiba.org/pages/products/opal/) data warehouse. See also [DSLite](https://datashield.github.io/DSLite/) for a server-less implementation of DSI for local datasets.
 
 These S4 classes and generic methods are meant **to be used for implementing connection to a DataSHIELD-aware data repository.**
 
@@ -46,6 +45,7 @@ for managing the list of `DSConnection` objects that will be discovered and used
   * `datashield.resources`, `datashield.resource_status` list the resources and their accessibility across a set of data repositories, 
   * `datashield.pkg_status`, `datashield.method_status` and `datashield.methods` are 
   utility functions to explore the DataSHIELD setup across a set of data repositories.
+  * `datashield.profiles` lists the DataSHIELD profiles that can be selected at login time.
 
 These `datashield.*` functions are meant **to be used by DataSHIELD packages developers and users.**
   

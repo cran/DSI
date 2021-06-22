@@ -1,4 +1,51 @@
 
+#' List of DataSHIELD profiles
+#'
+#' Get the list of all the DataSHIELD profiles from the different data repositories: available ones
+#' and currently applied to each connection.
+#'
+#' @param conns \code{\link{DSConnection-class}} object or a list of \code{\link{DSConnection-class}}s.
+#' @return Profiles details from all the servers.
+#' @export
+datashield.profiles <- function(conns) {
+  
+  as.df <- function(profiles) {
+    allProfiles <- NULL
+    for (std in names(profiles)) {
+      allProfiles <- append(allProfiles, profiles[[std]]$available)
+    }
+    allProfiles <- unique(allProfiles)
+    studies <- list()
+    for (std in names(profiles)) {
+      stdProfiles <- NULL
+      for (p in allProfiles) {
+        stdProfiles <- append(stdProfiles, p %in% profiles[[std]]$available)
+      }
+      studies[[std]] <- stdProfiles
+    }
+    df <- as.data.frame(studies)
+    row.names(df) <- allProfiles
+    rval <- list(available = df)
+    df <- as.data.frame(sapply(profiles, function(s) s$current))
+    colnames(df) <- "profile"
+    rval$current <- df
+    rval
+  }
+  
+  onProfilesError <- function(e) {
+    warning("Can't list profiles (is your DS driver library up to date?), using 'default' profile.")
+    list(available = "default", current = "default")
+  }
+  
+  if (is.list(conns)) {
+    as.df(lapply(conns, function(c) { tryCatch(dsListProfiles(c), error = onProfilesError) }))
+  } else { 
+    lconns <- list()
+    lconns[[conns@name]] <- conns
+    as.df(lapply(lconns, function(c) { tryCatch(dsListProfiles(c), error = onProfilesError) }))
+  }
+}
+
 #' List of DataSHIELD methods
 #'
 #' Get the list of all the DataSHIELD methods from the different data repositories.
