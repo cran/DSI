@@ -12,7 +12,8 @@ datashield.login(
   symbol = "D",
   id.name = NULL,
   opts = getOption("datashield.opts", list()),
-  restore = NULL
+  restore = NULL,
+  failSafe = FALSE
 )
 }
 \arguments{
@@ -45,6 +46,8 @@ will be the data frame row names. When specified this column can be used to perf
 \item{opts}{Default SSL options to be used in case it is not specified in the logins structure.}
 
 \item{restore}{The workspace name to restore (optional).}
+
+\item{failSafe}{Ignores, with a warning, the servers for which the connection cannot be established. Optional, default is FALSE.}
 }
 \value{
 object(s) of class DSConnection
@@ -89,6 +92,9 @@ connections <- datashield.login(logins=logindata, assign=TRUE)
 myvar <- list("LAB_TSC")
 connections <- datashield.login(logins=logindata, assign=TRUE, variables=myvar)
 
+# Example 4: ignore with a warning message servers for which connection cannot be established
+connections <- datashield.login(logins=logindata, failSafe=TRUE)
+
 # note that the asignment information can also be provided afterwards
 builder <- newDSLoginBuilder()
 builder$append(server="server1", url="https://opal-demo.obiba.org",
@@ -101,7 +107,7 @@ datashield.assign.table(connections, symbol = "D",
                         table = list(server1 = "CNSIM.CNSIM1",
                                      server2 = "CNSIM.CNSIM2"))
 datashield.assign.resource(connections, symbol = "rsrc",
-                           table = list(server1 = "res.CNSIM1",
+                           resource = list(server1 = "res.CNSIM1",
                                         server2 = "res.CNSIM2"))
 }
 
