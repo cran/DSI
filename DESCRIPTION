@@ -1,7 +1,7 @@
 Package: DSI
 Type: Package
 Title: 'DataSHIELD' Interface
-Version: 1.6.0
+Version: 1.7.0
 Authors@R: 
     c(person(given = "Yannick",
              family = "Marcon",
@@ -12,6 +12,10 @@ Authors@R:
              family = "Gaye",
              role = "ctb",
              comment = c(ORCID = "0000-0002-1180-2792")),
+      person(given = "Tim",
+             family = "Cadman",
+             role = "ctb",
+             comment = c(ORCID = "0000-0002-7682-5645")),
       person(given = "Paul",
              family = "Burton",
              role = "ctb"))
@@ -19,7 +23,8 @@ Description: 'DataSHIELD' is an infrastructure and series of R packages that
     enables the remote and 'non-disclosive' analysis of sensitive research data. 
     This package defines the API that is to be implemented by 'DataSHIELD' compliant 
     data repositories.
-Depends: R (>= 4.3), methods, progress, R6
+Depends: R (>= 4.3), methods, progress, R6,
+Imports: cli
 Suggests: testthat (>= 2.1.0)
 License: LGPL (>= 2.1)
 URL: https://github.com/datashield/DSI/,
@@ -34,10 +39,11 @@ Collate: 'DSObject.R' 'DSConnection.R' 'DSDriver.R' 'DSI-package.R'
         'datashield.logout.R' 'datashield.status.R'
         'datashield.symbol.R' 'datashield.workspace.R' 'utils.R'
 NeedsCompilation: no
-Packaged: 2024-05-24 14:46:38 UTC; yannick
+Packaged: 2024-10-08 17:47:21 UTC; yannick
 Author: Yannick Marcon [aut, cre] (<https://orcid.org/0000-0003-0138-2023>),
   Amadou Gaye [ctb] (<https://orcid.org/0000-0002-1180-2792>),
+  Tim Cadman [ctb] (<https://orcid.org/0000-0002-7682-5645>),
   Paul Burton [ctb]
 Maintainer: Yannick Marcon <yannick.marcon@obiba.org>
 Repository: CRAN
-Date/Publication: 2024-05-24 18:00:12 UTC
+Date/Publication: 2024-10-08 18:30:06 UTC
